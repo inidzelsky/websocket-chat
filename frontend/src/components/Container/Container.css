@@ -1,5 +1,6 @@
 .container {
     margin: 20px 80px;
-    display: flex;
-    flex-wrap: wrap;
+    height: 650px;
+    width: 1150px;
+    display: inline-flex;
 }

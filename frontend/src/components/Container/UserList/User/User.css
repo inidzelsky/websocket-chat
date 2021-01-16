@@ -1,0 +1,54 @@
+.user-card {
+    display: inline-flex;
+    height: 70px;
+    width: 100%;
+    padding: 5px 10px;
+}
+
+.user-card.active {
+    background: #f8f8f8;
+}
+
+.user-card .avatar {
+    height: 60px;
+    width: 60px;
+}
+
+.user-card .avatar-container {
+    position: relative;
+}
+
+.user-card .online {
+    bottom: -5px;
+    right: -5px;
+    height: 15px;
+    width: 15px;
+    position: absolute;
+}
+
+.user-card .user-body {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 100%;
+    margin: 2px 0 2px 10px;
+}
+
+.user-card .user-name {
+    font-family: "Open Sans Semibold";
+    font-size: 12pt;
+    color: #333333;
+    width: 100%;
+}
+
+.user-card .user-status {
+    font-family: "Open Sans Regular";
+    font-size: 10pt;
+    color: #999999;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
