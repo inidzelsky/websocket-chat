@@ -19,6 +19,7 @@ module.exports = {
     "prettier/@typescript-eslint"
   ],
   rules: {
+    "single": true,
     "@typescript-eslint/explicit-function-return-type": "off"
   }
 }
