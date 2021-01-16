@@ -1,6 +1,8 @@
 import React from 'react';
 
 import InterlocutorInfo from './InterlocutorInfo/InterlocutorInfo';
+import Messages from './Messages/Messages';
+import InputMessage from './InputMessage/InputMessage';
 
 import { UserType } from '../../../types';
 
@@ -17,6 +19,8 @@ const Chat: React.FC = () => {
   return (
     <div className='chat'>
       <InterlocutorInfo name={interlocutor.name} image={interlocutor.image} status={interlocutor.status} />
+      <Messages />
+      <InputMessage />
     </div>
   );
 };

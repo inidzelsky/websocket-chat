@@ -1,0 +1,22 @@
+.input-message {
+    margin-left: 10px;
+}
+
+.input-message input {
+    width: 630px;
+    height: 35px;
+    padding: 15px;
+    font-family: "Open Sans Regular";
+    margin-right: 10px;
+}
+
+.input-message button {
+    width: 195px;
+    height: 35px;
+    background: #428bca;
+    border: 1px solid #357ebc;
+    border-radius: 4px;
+    font-family: "Open Sans Regular";
+    font-size: 14px;
+    color: #ffffff;
+}

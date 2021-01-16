@@ -12,7 +12,7 @@ const User: React.FC<UserType> = ({ image, name, status, isActive }) => {
     <div className={classNames}>
       <div className='avatar-container'>
         <img className='avatar' src={image} alt='User' />
-        <img className='online' src={onlineSrc} />
+        <img className='online' src={onlineSrc} alt=''/>
       </div>
       <div className='user-body'>
         <span className='user-name'>{name}</span>
