@@ -20,6 +20,6 @@ module.exports = {
   ],
   rules: {
     "quotes": ["error", "single"],
-    "@typescript-eslint/explicit-function-return-type": "off"
+    "react/prop-types": 0
   }
 }

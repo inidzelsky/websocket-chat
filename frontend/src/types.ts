@@ -4,3 +4,9 @@ export type UserType = {
   status: string;
   isActive: boolean;
 };
+
+export type MessageType = {
+  username: string;
+  date: Date;
+  text: string;
+};

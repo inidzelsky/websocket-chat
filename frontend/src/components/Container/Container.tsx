@@ -7,7 +7,7 @@ import './Container.css';
 
 const Container: React.FC = () => {
   return (
-    <div className="container">
+    <div className='container'>
       <Chat />
       <UserList />
     </div>

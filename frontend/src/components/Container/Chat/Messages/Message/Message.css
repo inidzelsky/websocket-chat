@@ -1,0 +1,86 @@
+.message {
+    width: 630px;
+    min-height: 70px;
+    margin: 10px;
+    position: relative;
+}
+
+.message.user-message::after {
+    content: "";
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    background: #f4f8fb;
+    transform: rotate(45deg);
+    bottom: 20px;
+    right: -5px
+}
+
+.message.interlocutor-message::after {
+    content: "";
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    background: #f4f8fb;
+    transform: rotate(45deg);
+    bottom: 20px;
+    left: -5px
+}
+
+.message.user-message {
+    float: right;
+    margin-right: 25px;
+}
+
+.message.interlocutor-message {
+    float: left;
+    margin-left: 15px;
+}
+
+.message-header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 17px 0 18px;
+}
+
+.user-message .message-header {
+    background: #f0cbb3;
+}
+
+.interlocutor-message .message-header {
+    background:  #becbd9;
+}
+
+.user-message .message-header .username {
+    color: #703a18;
+}
+
+.user-message .message-header .date {
+    color: #bba08e;
+}
+
+.interlocutor-message .message-header. .username {
+    color: #203245;
+}
+
+.interlocutor-message .message-header .date {
+    color: #9aa8b7;
+}
+
+.message-body {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: #f4f8fb;
+    width: 100%;
+    min-height: 40px;
+    padding: 15px;
+    font-family: "Open Sans Semibold";
+    font-size: 14px;
+    color: #4a4d52;
+    word-wrap: break-word;
+}

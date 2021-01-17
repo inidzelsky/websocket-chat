@@ -13,17 +13,11 @@ const UserList: React.FC = () => {
       image: 'echobot.png',
       name: 'Echo bot',
       status: 'Who am I? Who are you? What are you doing here? Go away! Blah-blah-blah-blah-blah',
-      isActive: false
+      isActive: false,
     },
     { image: 'reversebot.png', name: 'Reverse bot', status: 'Dos', isActive: true },
     { image: 'spambot.png', name: 'Spam bot', status: 'Tres', isActive: false },
     { image: 'ignorebot.png', name: 'Ignore bot', status: 'Quadro', isActive: false },
-    { image: 'reversebot.png', name: 'Reverse bot', status: 'Dos', isActive: true },
-    { image: 'spambot.png', name: 'Spam bot', status: 'Tres', isActive: false },
-    { image: 'ignorebot.png', name: 'Ignore bot', status: 'Quadro', isActive: false },
-    { image: 'reversebot.png', name: 'Reverse bot', status: 'Dos', isActive: true },
-    { image: 'spambot.png', name: 'Spam bot', status: 'Tres', isActive: false },
-    { image: 'ignorebot.png', name: 'Ignore bot', status: 'Quadro', isActive: false }
   ];
 
   return (
@@ -32,7 +26,7 @@ const UserList: React.FC = () => {
         <Tabs />
         <div className='user-list'>
           {users.map((u: UserType) => (
-            <User key={users.indexOf(u)} image={u.image} name={u.name} status={u.status} isActive={u.isActive}/>
+            <User key={users.indexOf(u)} image={u.image} name={u.name} status={u.status} isActive={u.isActive} />
           ))}
         </div>
       </div>
