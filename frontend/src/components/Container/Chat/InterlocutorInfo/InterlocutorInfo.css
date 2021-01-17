@@ -1,0 +1,35 @@
+.interlocutor-info-container {
+    height: 170px;
+    width: 100%;
+    background: #becbd9;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.interlocutor-info-container .avatar {
+    min-height: 170px;
+    max-height: 170px;
+    min-width: 170px;
+    max-width: 170px;
+}
+
+.interlocutor-info-body {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    margin: 20px;
+}
+
+.interlocutor-name {
+    width: 100%;
+    font-family: "Open Sans Semibold";
+    font-size: 24px;
+    color: #333333;
+}
+
+.interlocutor-status {
+    width: 100%;
+    font-family: "Open Sans Regular";
+    font-size: 16px;
+    color: #354149;
+}

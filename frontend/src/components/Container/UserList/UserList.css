@@ -1,0 +1,25 @@
+.user-list-container {
+    background: #ffffff;
+    width: 260px;
+    height: 650px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+.user-list {
+    margin: 10px 0;
+    height: 490px;
+    overflow-y: auto;
+}
+
+.user-list-search {
+    height: 35px;
+    width: 100%;
+    margin: 15px 10px;
+    font-family: "Open Sans";
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    padding-left: 10px;
+}
+

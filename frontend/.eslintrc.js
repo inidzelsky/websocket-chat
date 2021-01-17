@@ -19,6 +19,7 @@ module.exports = {
     "prettier/@typescript-eslint"
   ],
   rules: {
-    "@typescript-eslint/explicit-function-return-type": "off"
+    "quotes": ["error", "single"],
+    "react/prop-types": 0
   }
 }

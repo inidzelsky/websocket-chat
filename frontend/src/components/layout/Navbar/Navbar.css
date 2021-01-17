@@ -1,0 +1,14 @@
+nav {
+    min-height: 80px;
+    width: 100%;
+    background: #ffffff;
+    position: relative;
+}
+
+nav .title {
+    position: absolute;
+    font-family: "Open Sans Semibold";
+    font-size: 20pt;
+    transform: translate(80px, 36px);
+    color: #333333;
+}
