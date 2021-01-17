@@ -3,6 +3,9 @@
 .idea
 package-lock.json
 
+#typescript
+backend/dist
+
 # dependencies
 node_modules
 /.pnp
