@@ -6,7 +6,8 @@ export type UserType = {
 };
 
 export type MessageType = {
-  username: string;
-  date: Date;
-  text: string;
+  sender: string;
+  receiver: string;
+  sendTime: Date;
+  content: string;
 };

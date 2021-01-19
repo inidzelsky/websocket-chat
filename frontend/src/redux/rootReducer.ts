@@ -1,10 +1,17 @@
-import { SET_SOCKET, LOAD_INTERLOCUTORS, SHOW_ONLINE_USERS, SET_CURRENT_INTERLOCUTOR } from './types';
+import {
+  SET_SOCKET,
+  LOAD_INTERLOCUTORS,
+  SHOW_ONLINE_USERS,
+  SET_CURRENT_INTERLOCUTOR,
+  LOAD_MESSAGES,
+} from './types';
 
 const initialState = {
   socketClient: null,
   interlocutors: [],
   showOnlineUsers: false,
   currentInterlocutor: null,
+  messages: []
 };
 
 const rootReducer = (state = initialState, action: any) => {
@@ -17,6 +24,8 @@ const rootReducer = (state = initialState, action: any) => {
       return { ...state, showOnlineUsers: action.payload };
     case SET_CURRENT_INTERLOCUTOR:
       return { ...state, currentInterlocutor: action.payload };
+    case LOAD_MESSAGES:
+      return { ...state, messages: action.payload }
     default:
       return state;
   }

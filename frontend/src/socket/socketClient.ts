@@ -1,8 +1,8 @@
 import io from 'socket.io-client';
 import { Dispatch } from 'redux';
-import { loadInterlocutors } from '../redux/actions';
+import { loadInterlocutors, loadMessages } from '../redux/actions';
 
-import { UserType } from '../types';
+import { MessageType, UserType } from '../types';
 
 class SocketClient {
   private socket: SocketIOClient.Socket | undefined;
@@ -23,6 +23,10 @@ class SocketClient {
 
     this.socket.on('set interlocutors', (interlocutors: Array<UserType>) => {
       this.dispatch(loadInterlocutors(interlocutors));
+    });
+
+    this.socket.on('messages', (messages: Array<MessageType>) => {
+      this.dispatch(loadMessages(messages));
     });
   }
 }

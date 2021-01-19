@@ -68,6 +68,10 @@ const onConnection = async (
   // Set username to online users map
   onlineUsers.set(username, socket.id);
 
+  // #TODO Rewrite to send on request
+  const userMessages = await api.database.selectMessagesByUsername(username);
+  socket.emit('messages', userMessages);
+
   const users = await api.database.selectAllUsers();
 
   // Remove user with same username and set online statuses
