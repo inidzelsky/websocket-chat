@@ -4,6 +4,7 @@ import API from '../api';
 
 import onConnection from './handlers/connectionHandler';
 import onDisconnect from './handlers/disconnectHandler';
+import onMessage from './handlers/messageHandler';
 
 class SocketServer {
   private readonly io: IOServer;
@@ -24,6 +25,9 @@ class SocketServer {
   configure() {
     this.io.on('connection', async (socket: Socket) => {
       const username = await onConnection(this.io, socket, this.api, this.onlineUsers);
+
+      //Message handler
+      socket.on('message', onMessage(this.io, socket, this.api, this.onlineUsers));
 
       // Disconnect handler
       socket.on(
