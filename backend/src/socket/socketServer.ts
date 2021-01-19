@@ -12,9 +12,11 @@ type SocketQuery = {
 class SocketServer {
   private io: IOServer;
   private api: API;
+  private onlineUsers: Map<string, string>;
 
   constructor(httpServer: HTTPServer, api: API) {
     this.api = api;
+    this.onlineUsers = new Map();
     this.io = new IOServer(httpServer, {
       cors: {
         origin: process.env.CLIENT_HOST,
@@ -40,12 +42,19 @@ class SocketServer {
         socket.emit('username', username);
       }
 
+      this.onlineUsers.set(username, socket.id);
       const interlocutors = await this.api.database.selectAllUsers();
-      socket.emit(
-        'interlocutors',
-        // #TODO Implement status feature
-        interlocutors.filter((i) => i.username !== username).map((i) => ({ ...i, isOnline: true, status: 'Lorem' })),
-      );
+      // #TODO Implement status feature
+      const userInterlocutors = interlocutors
+        .filter((i) => i.username !== username)
+        .map((i) => {
+          const isOnline = this.onlineUsers.has(i.username);
+          const status = 'Lorem';
+
+          return { ...i, isOnline, status };
+        });
+
+      socket.emit('interlocutors', userInterlocutors);
     });
   }
 }
