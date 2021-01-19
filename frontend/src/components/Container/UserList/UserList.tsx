@@ -5,22 +5,30 @@ import { UserType } from '../../../types';
 
 import Tabs from './Tabs/Tabs';
 import User from './User/User';
+import Search from './Search/Search';
 
 import './UserList.css';
 
 const UserList: React.FC = () => {
-  const [showOnlineUsers, interlocutors] = useSelector((state: any) => [state.showOnlineUsers, state.interlocutors]);
+  const [showOnlineUsers, interlocutors, searchInterlocutors] = useSelector((state: any) => [
+    state.showOnlineUsers,
+    state.interlocutors,
+    state.searchInterlocutors,
+  ]);
 
-  const displayInterlocutors = showOnlineUsers ? interlocutors.filter((i: UserType) => i.isOnline) : interlocutors;
+  const statusInterlocutors = showOnlineUsers ? interlocutors.filter((i: UserType) => i.isOnline) : interlocutors;
+  const filteredInterlocutors = searchInterlocutors
+    ? statusInterlocutors.filter((i: UserType) => i.username.toLowerCase().includes(searchInterlocutors.toLowerCase()))
+    : statusInterlocutors;
 
   return (
     <div className='user-list-container'>
       <div>
         <Tabs />
         <div className='user-list'>
-          {displayInterlocutors.map((u: UserType) => (
+          {filteredInterlocutors.map((u: UserType) => (
             <User
-              key={interlocutors.indexOf(u)}
+              key={filteredInterlocutors.indexOf(u)}
               avatar={u.avatar}
               username={u.username}
               status={u.status}
@@ -29,7 +37,7 @@ const UserList: React.FC = () => {
           ))}
         </div>
       </div>
-      <input className='user-list-search' type='text' placeholder='Search...' />
+      <Search />
     </div>
   );
 };

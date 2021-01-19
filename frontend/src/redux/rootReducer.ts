@@ -4,6 +4,7 @@ import {
   SHOW_ONLINE_USERS,
   SET_CURRENT_INTERLOCUTOR,
   LOAD_MESSAGES,
+  SET_SEARCH_INTERLOCUTORS,
 } from './types';
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
   interlocutors: [],
   showOnlineUsers: false,
   currentInterlocutor: null,
-  messages: []
+  searchInterlocutors: '',
+  messages: [],
 };
 
 const rootReducer = (state = initialState, action: any) => {
@@ -25,7 +27,9 @@ const rootReducer = (state = initialState, action: any) => {
     case SET_CURRENT_INTERLOCUTOR:
       return { ...state, currentInterlocutor: action.payload };
     case LOAD_MESSAGES:
-      return { ...state, messages: action.payload }
+      return { ...state, messages: action.payload };
+    case SET_SEARCH_INTERLOCUTORS:
+      return { ...state, searchInterlocutors: action.payload };
     default:
       return state;
   }

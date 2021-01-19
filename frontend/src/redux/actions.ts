@@ -1,6 +1,13 @@
 import SocketClient from '../socket/socketClient';
 
-import { SET_SOCKET, LOAD_INTERLOCUTORS, SHOW_ONLINE_USERS, SET_CURRENT_INTERLOCUTOR, LOAD_MESSAGES } from './types';
+import {
+  SET_SOCKET,
+  LOAD_INTERLOCUTORS,
+  SHOW_ONLINE_USERS,
+  SET_CURRENT_INTERLOCUTOR,
+  LOAD_MESSAGES,
+  SET_SEARCH_INTERLOCUTORS
+} from './types';
 import { MessageType, UserType } from '../types';
 
 // SOCKET
@@ -19,6 +26,10 @@ export const setShowOnlineUsers = (showOnline: boolean) => {
 
 export const setCurrentInterlocutor = (interlocutor: UserType) => {
   return { type: SET_CURRENT_INTERLOCUTOR, payload: interlocutor };
+};
+
+export const setSearchInterlocutors = (filter: string) => {
+  return { type: SET_SEARCH_INTERLOCUTORS, payload: filter };
 };
 
 // MESSAGES
