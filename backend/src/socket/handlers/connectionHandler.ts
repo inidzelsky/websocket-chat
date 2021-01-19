@@ -37,7 +37,7 @@ const formInterlocutors = (
     });
 };
 
-const broadcastInterlocutors = (
+export const broadcastInterlocutors = (
   io: Server,
   users: Array<UserType>,
   onlineUsers: Map<string, string>,
@@ -59,7 +59,7 @@ const onConnection = async (
   socket: Socket,
   api: API,
   onlineUsers: Map<string, string>,
-) => {
+): Promise<string> => {
   // Get username from local storage
   const queryUsername = (socket.handshake.query as SocketQuery).username;
   // Returns queryUsername or creates new username
@@ -78,6 +78,8 @@ const onConnection = async (
 
   // Update interlocutors list of other users
   broadcastInterlocutors(io, users, onlineUsers);
+
+  return username;
 };
 
 export default onConnection;

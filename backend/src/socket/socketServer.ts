@@ -3,6 +3,7 @@ import { Server as IOServer, Socket } from 'socket.io';
 import API from '../api';
 
 import onConnection from './handlers/connectionHandler';
+import onDisconnect from './handlers/disconnectHandler';
 
 class SocketServer {
   private readonly io: IOServer;
@@ -22,7 +23,13 @@ class SocketServer {
 
   configure() {
     this.io.on('connection', async (socket: Socket) => {
-      await onConnection(this.io, socket, this.api, this.onlineUsers);
+      const username = await onConnection(this.io, socket, this.api, this.onlineUsers);
+
+      // Disconnect handler
+      socket.on(
+        'disconnect',
+        onDisconnect(this.io, this.api, this.onlineUsers, username),
+      );
     });
   }
 }
