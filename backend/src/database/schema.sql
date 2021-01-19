@@ -1,6 +1,7 @@
 create table users (
     username varchar(25) primary key,
-    avatar varchar(255)
+    avatar varchar(255),
+    status text
 );
 
 create table messages (

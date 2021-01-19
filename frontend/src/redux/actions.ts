@@ -1,6 +1,6 @@
 import SocketClient from '../socket/socketClient';
 
-import { SET_SOCKET, LOAD_INTERLOCUTORS, SHOW_ONLINE_USERS } from './types';
+import {SET_SOCKET, LOAD_INTERLOCUTORS, SHOW_ONLINE_USERS, SET_CURRENT_INTERLOCUTOR} from './types';
 import { UserType } from '../types';
 
 // SOCKET
@@ -15,4 +15,8 @@ export const loadInterlocutors = (interlocutors: Array<UserType>) => {
 // APP
 export const setShowOnlineUsers = (showOnline: boolean) => {
   return { type: SHOW_ONLINE_USERS, payload: showOnline };
+};
+
+export const setCurrentInterlocutor = (interlocutor: UserType) => {
+  return { type: SET_CURRENT_INTERLOCUTOR, payload: interlocutor };
 };
