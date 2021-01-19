@@ -1,7 +1,8 @@
 create table users (
-    username varchar(25) primary key,
+    username varchar(25),
     avatar varchar(255),
-    status text
+    status text,
+    primary key(username)
 );
 
 create table messages (
@@ -11,12 +12,6 @@ create table messages (
     content text,
     send_time timestamp,
     primary key(id),
-    constraint fk_sender
-        foreign key(sender)
-            references users(username),
-    constraint fk_receiver
-        foreign key(receiver)
-            references users(username),
     constraint diff_sender_receiver
         check (sender != receiver)
 );

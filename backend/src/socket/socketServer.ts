@@ -5,6 +5,8 @@ import API from '../api';
 import onConnection from './handlers/connectionHandler';
 import onDisconnect from './handlers/disconnectHandler';
 import onMessage from './handlers/messageHandler';
+import onBots from './handlers/botsHandler';
+import { spamBot } from './handlers/botsHandler';
 
 class SocketServer {
   private readonly io: IOServer;
@@ -26,8 +28,14 @@ class SocketServer {
     this.io.on('connection', async (socket: Socket) => {
       const username = await onConnection(this.io, socket, this.api, this.onlineUsers);
 
-      //Message handler
+      // Message handler
       socket.on('message', onMessage(this.io, socket, this.api, this.onlineUsers));
+
+      // Bots handler
+      socket.on('bot', onBots(socket, this.api));
+
+      // Spam bot
+      spamBot(socket, this.api, this.onlineUsers, username);
 
       // Disconnect handler
       socket.on(
