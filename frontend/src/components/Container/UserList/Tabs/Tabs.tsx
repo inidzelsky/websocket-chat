@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setShowOnlineUsers } from '../../../../redux/actions';
 
 import './Tabs.css';
 
 const Tabs: React.FC = () => {
-  const [isOnlineTab, setIsOnlineTab] = useState<boolean>(true);
+  const dispatch = useDispatch();
+  const showOnlineUsers = useSelector((state: any) => state.showOnlineUsers);
 
-  const onlineClasses = isOnlineTab ? 'user-list-tab' : 'user-list-tab nonactive';
-  const activeClasses = isOnlineTab ? 'user-list-tab nonactive' : 'user-list-tab';
+  const onlineClasses = showOnlineUsers ? 'user-list-tab' : 'user-list-tab nonactive';
+  const allClasses = showOnlineUsers ? 'user-list-tab nonactive' : 'user-list-tab';
 
   return (
     <div className='user-list-tabs'>
-      <div className={onlineClasses} onClick={() => setIsOnlineTab(true)}>
+      <div className={onlineClasses} onClick={() => dispatch(setShowOnlineUsers(true))}>
         Online
       </div>
-      <div className={activeClasses} onClick={() => setIsOnlineTab(false)}>
+      <div className={allClasses} onClick={() => dispatch(setShowOnlineUsers(false))}>
         All
       </div>
     </div>

@@ -1,16 +1,19 @@
-import { SET_SOCKET, SET_INTERLOCUTORS } from './types';
+import { SET_SOCKET, LOAD_INTERLOCUTORS, SHOW_ONLINE_USERS } from './types';
 
 const initialState = {
   socketClient: null,
-  interlocutors: []
+  interlocutors: [],
+  showOnlineUsers: false,
 };
 
 const rootReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case SET_SOCKET:
       return { ...state, socketClient: action.payload };
-    case SET_INTERLOCUTORS:
+    case LOAD_INTERLOCUTORS:
       return { ...state, interlocutors: action.payload };
+    case SHOW_ONLINE_USERS:
+      return { ...state, showOnlineUsers: action.payload };
     default:
       return state;
   }

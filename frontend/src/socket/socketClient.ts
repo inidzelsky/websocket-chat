@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import { Dispatch } from 'redux';
-import { setInterlocutors } from '../redux/actions';
+import { loadInterlocutors } from '../redux/actions';
 
 import { UserType } from '../types';
 
@@ -22,7 +22,7 @@ class SocketClient {
     this.socket.on('set username', (username: string) => localStorage.setItem('username', username));
 
     this.socket.on('set interlocutors', (interlocutors: Array<UserType>) => {
-      this.dispatch(setInterlocutors(interlocutors));
+      this.dispatch(loadInterlocutors(interlocutors));
     });
   }
 }

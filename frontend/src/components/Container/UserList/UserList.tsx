@@ -9,14 +9,16 @@ import User from './User/User';
 import './UserList.css';
 
 const UserList: React.FC = () => {
-  const interlocutors = useSelector((state: any) => state.interlocutors);
+  const [showOnlineUsers, interlocutors] = useSelector((state: any) => [state.showOnlineUsers, state.interlocutors]);
+
+  const displayInterlocutors = showOnlineUsers ? interlocutors.filter((i: UserType) => i.isOnline) : interlocutors;
 
   return (
     <div className='user-list-container'>
       <div>
         <Tabs />
         <div className='user-list'>
-          {interlocutors.map((u: UserType) => (
+          {displayInterlocutors.map((u: UserType) => (
             <User
               key={interlocutors.indexOf(u)}
               avatar={u.avatar}
