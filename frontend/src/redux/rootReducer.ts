@@ -1,11 +1,16 @@
-import { SET_SOCKET } from './types';
+import { SET_SOCKET, SET_INTERLOCUTORS } from './types';
 
-const initialState = {};
+const initialState = {
+  socketClient: null,
+  interlocutors: []
+};
 
 const rootReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case typeof SET_SOCKET:
-      return { socketClient: action.payload };
+    case SET_SOCKET:
+      return { ...state, socketClient: action.payload };
+    case SET_INTERLOCUTORS:
+      return { ...state, interlocutors: action.payload };
     default:
       return state;
   }
