@@ -1,6 +1,7 @@
 export type UserType = {
   username: string;
   avatar: string;
+  status: string;
 };
 
 export type MessageType = {

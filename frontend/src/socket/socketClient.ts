@@ -19,9 +19,9 @@ class SocketClient {
       },
     });
 
-    this.socket.on('username', (username: string) => localStorage.setItem('username', username));
+    this.socket.on('set username', (username: string) => localStorage.setItem('username', username));
 
-    this.socket.on('interlocutors', (interlocutors: Array<UserType>) => {
+    this.socket.on('set interlocutors', (interlocutors: Array<UserType>) => {
       this.dispatch(setInterlocutors(interlocutors));
     });
   }
