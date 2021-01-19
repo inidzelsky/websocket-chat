@@ -23,5 +23,6 @@ export const setCurrentInterlocutor = (interlocutor: UserType) => {
 
 // MESSAGES
 export const loadMessages = (messages: Array<MessageType>) => {
-  return { type: LOAD_MESSAGES, payload: messages };
+  const payload = messages.map((message) => ({ ...message, sendTime: new Date(message.sendTime) }));
+  return { type: LOAD_MESSAGES, payload };
 };

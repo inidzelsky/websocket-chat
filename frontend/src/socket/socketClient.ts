@@ -29,6 +29,10 @@ class SocketClient {
       this.dispatch(loadMessages(messages));
     });
   }
+
+  sendMessage(message: Omit<MessageType, 'sendTime'>) {
+    (this.socket as SocketIOClient.Socket).emit('message', message);
+  }
 }
 
 export default SocketClient;
