@@ -15,13 +15,20 @@ class PostgresDatabase implements Database {
     return rows;
   }
 
+  async selectUserByUsername(username: string): Promise<UserType | null> {
+    const sql = `select username, avatar from users where username = $1`;
+    const { rows } = await this.pool.query(sql, [username]);
+    if (rows.length > 0) return rows[0];
+    return null;
+  }
+
   async createUser(user: UserType): Promise<void> {
     const { username, avatar } = user;
     const sql = `insert into users (username, avatar) values ($1, $2)`;
     await this.pool.query(sql, [username, avatar]);
   }
 
-  async selectMessagesByUserName(username: string): Promise<Array<MessageType>> {
+  async selectMessagesByUsername(username: string): Promise<Array<MessageType>> {
     const sql = `select sender, receiver, content, send_time as "sendTime"
       from messages where sender = $1 or receiver = $1`;
 

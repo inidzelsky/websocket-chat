@@ -1,19 +1,17 @@
 import { createServer } from 'http';
 import Koa from 'koa';
-import { Server, Socket } from 'socket.io';
 import { Pool } from 'pg';
 import * as dotenv from 'dotenv';
+
+import SocketServer from './socket/SocketServer';
+import PostgresDatabase from './database/postgresDatabase';
 
 dotenv.config({ path: '.env' });
 
 const app = new Koa();
 const server = createServer(app.callback());
-const io = new Server(server, {
-  cors: {
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST'],
-  },
-});
+const socketServer = new SocketServer(server);
+socketServer.configure();
 
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -22,11 +20,12 @@ const pool = new Pool({
   port: Number.parseInt(process.env.DB_PORT as string),
 });
 
-io.on('connection', (socket: Socket) => {
-  console.log(socket.id);
+const postgresDatabase = new PostgresDatabase(pool);
 
-  socket.emit('message', { hello: 'world' });
-});
+type SocketQuery = {
+  username: string | null;
+  image: string | null;
+};
 
 const port = Number.parseInt(process.env.PORT as string) || 8080;
 
