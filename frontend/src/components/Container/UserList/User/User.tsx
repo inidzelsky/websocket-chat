@@ -4,18 +4,17 @@ import { UserType } from '../../../../types';
 
 import './User.css';
 
-const User: React.FC<UserType> = ({ image, name, status, isActive }) => {
-  const classNames = isActive ? 'user-card active' : 'user-card';
-  const onlineSrc = isActive ? 'online.png' : 'offline.png';
+const User: React.FC<UserType> = ({ avatar, username, status, isOnline = true }) => {
+  const classNames = isOnline ? 'user-card active' : 'user-card';
 
   return (
     <div className={classNames}>
       <div className='avatar-container'>
-        <img className='avatar' src={image} alt='User' />
-        <img className='online' src={onlineSrc} alt='' />
+        <img className='avatar' src={avatar} alt='User' />
+        <img className='online' src='online.png' alt='' />
       </div>
       <div className='user-body'>
-        <span className='user-name'>{name}</span>
+        <span className='user-name'>{username}</span>
         <span className='user-status'>{status}</span>
       </div>
     </div>

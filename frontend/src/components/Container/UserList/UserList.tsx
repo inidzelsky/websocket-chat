@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { UserType } from '../../../types';
 
@@ -8,25 +9,21 @@ import User from './User/User';
 import './UserList.css';
 
 const UserList: React.FC = () => {
-  const users: Array<UserType> = [
-    {
-      image: 'echobot.png',
-      name: 'Echo bot',
-      status: 'Who am I? Who are you? What are you doing here? Go away! Blah-blah-blah-blah-blah',
-      isActive: false,
-    },
-    { image: 'reversebot.png', name: 'Reverse bot', status: 'Dos', isActive: true },
-    { image: 'spambot.png', name: 'Spam bot', status: 'Tres', isActive: false },
-    { image: 'ignorebot.png', name: 'Ignore bot', status: 'Quadro', isActive: false },
-  ];
+  const interlocutors = useSelector((state: any) => state.interlocutors);
 
   return (
     <div className='user-list-container'>
       <div>
         <Tabs />
         <div className='user-list'>
-          {users.map((u: UserType) => (
-            <User key={users.indexOf(u)} image={u.image} name={u.name} status={u.status} isActive={u.isActive} />
+          {interlocutors.map((u: UserType) => (
+            <User
+              key={interlocutors.indexOf(u)}
+              avatar={u.avatar}
+              username={u.username}
+              status={u.status}
+              isOnline={u.isOnline}
+            />
           ))}
         </div>
       </div>

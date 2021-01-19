@@ -1,8 +1,8 @@
 export type UserType = {
-  image: string;
-  name: string;
+  avatar: string;
+  username: string;
   status: string;
-  isActive: boolean;
+  isOnline: boolean;
 };
 
 export type MessageType = {
