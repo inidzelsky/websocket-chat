@@ -7,7 +7,7 @@ import {
   SET_CURRENT_INTERLOCUTOR,
   LOAD_MESSAGES,
   SET_SEARCH_INTERLOCUTORS,
-  LOAD_BOTS,
+  LOAD_BOTS, ADD_MESSAGE,
 } from './types';
 import { MessageType, UserType } from '../types';
 
@@ -42,3 +42,8 @@ export const loadMessages = (messages: Array<MessageType>) => {
   const payload = messages.map((message) => ({ ...message, sendTime: new Date(message.sendTime) }));
   return { type: LOAD_MESSAGES, payload };
 };
+
+export const addMessage = (message: MessageType) => {
+  const timeParsedMessage = { ...message, sendTime: new Date(message.sendTime) };
+  return { type: ADD_MESSAGE, payload: timeParsedMessage };
+}

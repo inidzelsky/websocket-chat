@@ -5,7 +5,7 @@ import {
   SET_CURRENT_INTERLOCUTOR,
   LOAD_MESSAGES,
   SET_SEARCH_INTERLOCUTORS,
-  LOAD_BOTS
+  LOAD_BOTS, ADD_MESSAGE
 } from './types';
 
 const initialState = {
@@ -32,6 +32,8 @@ const rootReducer = (state = initialState, action: any) => {
       return { ...state, currentInterlocutor: action.payload };
     case LOAD_MESSAGES:
       return { ...state, messages: action.payload };
+    case ADD_MESSAGE:
+      return { ...state, messages: [...state.messages, action.payload] };
     case SET_SEARCH_INTERLOCUTORS:
       return { ...state, searchInterlocutors: action.payload };
     default:

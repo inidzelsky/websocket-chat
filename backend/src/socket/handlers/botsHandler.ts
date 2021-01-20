@@ -8,22 +8,24 @@ const echoBot = async (
   message: Omit<MessageType, 'sendTime'>,
 ) => {
   const { sender, receiver, content } = message;
-  await api.database.createMessage({
+  const timedMessage = {
     ...message,
     sendTime: new Date(),
-  });
+  };
+
+  await api.database.createMessage(timedMessage);
+  socket.emit('new message', timedMessage);
 
   // Create and save bot message
-  const botMessage = {
+  const timedBotMessage = {
     sender: receiver,
     receiver: sender,
     content,
     sendTime: new Date(),
   };
-  await api.database.createMessage(botMessage);
 
-  const messages = await api.database.selectMessagesByUsername(sender);
-  socket.emit('messages', messages);
+  await api.database.createMessage(timedBotMessage);
+  socket.emit('new message', timedBotMessage);
 };
 
 const reverseBot = async (
@@ -32,10 +34,13 @@ const reverseBot = async (
   message: Omit<MessageType, 'sendTime'>,
 ) => {
   const { sender, receiver, content } = message;
-  await api.database.createMessage({
+  const timedMessage = {
     ...message,
     sendTime: new Date(),
-  });
+  };
+
+  await api.database.createMessage(timedMessage);
+  socket.emit('new message', timedMessage);
 
   const reverseContent = content.split('').reverse().join('');
   // Create and save bot message
@@ -45,14 +50,11 @@ const reverseBot = async (
     content: reverseContent,
   };
 
-  const messages = await api.database.selectMessagesByUsername(sender);
-  socket.emit('messages', messages);
-
   setTimeout(async () => {
-    await api.database.createMessage({ ...botMessage, sendTime: new Date() });
+    const timedBotMessage = { ...botMessage, sendTime: new Date() };
+    await api.database.createMessage(timedBotMessage);
 
-    const messages = await api.database.selectMessagesByUsername(sender);
-    socket.emit('messages', messages);
+    socket.emit('new message', timedBotMessage);
   }, 3000);
 };
 
@@ -77,10 +79,13 @@ export const spamBot = async (
 
   const timeout = genTimeout(10000, 120000);
   setTimeout(async () => {
-    await api.database.createMessage({ ...botMessage, sendTime: new Date() });
+    const timedBotMessage = {
+      ...botMessage,
+      sendTime: new Date(),
+    };
 
-    const messages = await api.database.selectMessagesByUsername(username);
-    socket.emit('messages', messages);
+    await api.database.createMessage(timedBotMessage);
+    socket.emit('new message', timedBotMessage);
 
     spamBot(socket, api, onlineUsers, username);
   }, timeout);

@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import { Dispatch } from 'redux';
-import { loadBots, loadInterlocutors, loadMessages } from '../redux/actions';
+import { addMessage, loadBots, loadInterlocutors, loadMessages } from '../redux/actions';
 
 import { MessageType, UserType } from '../types';
 
@@ -31,6 +31,10 @@ class SocketClient {
 
     this.socket.on('messages', (messages: Array<MessageType>) => {
       this.dispatch(loadMessages(messages));
+    });
+
+    this.socket.on('new message', (message: MessageType) => {
+      this.dispatch(addMessage(message));
     });
   }
 

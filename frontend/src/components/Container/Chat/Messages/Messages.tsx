@@ -14,8 +14,10 @@ const Messages: React.FC = () => {
       message.sender === currentInterlocutor.username || message.receiver === currentInterlocutor.username,
   );
 
+  filteredMessages.sort((m1: MessageType, m2: MessageType) => (m1.sendTime > m2.sendTime ? 1 : -1));
+
   return (
-    <div className='message-list'>
+    <div className='message-list' id='message-scroll'>
       {filteredMessages.map((m: MessageType) => (
         <Message key={filteredMessages.indexOf(m)} sender={m.sender} sendTime={m.sendTime} content={m.content} />
       ))}
