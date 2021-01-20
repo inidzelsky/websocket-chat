@@ -1,13 +1,12 @@
 export type UserType = {
-  avatar: string;
   username: string;
+  avatar: string;
   status: string;
-  isOnline: boolean;
 };
 
 export type MessageType = {
   sender: string;
   receiver: string;
-  sendTime: Date;
   content: string;
+  sendTime: Date;
 };

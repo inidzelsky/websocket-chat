@@ -1,13 +1,12 @@
-// type InitialStateType = {}
+import { combineReducers } from 'redux';
+import interlocutorsReducer from './interlocutorsReducer';
+import socketReducer from './socketReducer';
+import messagesReducer from './messagesReducer';
 
-const initialState = {
-};
-
-const rootReducer = (state = initialState, action: any) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+const rootReducer = combineReducers({
+  socket: socketReducer,
+  interlocutors: interlocutorsReducer,
+  messages: messagesReducer,
+});
 
 export default rootReducer;
