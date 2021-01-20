@@ -6,7 +6,7 @@ import './Tabs.css';
 
 const Tabs: React.FC = () => {
   const dispatch = useDispatch();
-  const showOnlineUsers = useSelector((state: any) => state.showOnlineUsers);
+  const showOnlineUsers = useSelector((state: any) => state.interlocutors.showOnlineUsers);
 
   const onlineClasses = showOnlineUsers ? 'user-list-tab' : 'user-list-tab nonactive';
   const allClasses = showOnlineUsers ? 'user-list-tab nonactive' : 'user-list-tab';

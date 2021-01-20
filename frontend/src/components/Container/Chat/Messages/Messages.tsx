@@ -7,7 +7,10 @@ import './Messages.css';
 import { MessageType } from '../../../../types';
 
 const Messages: React.FC = () => {
-  const [messages, currentInterlocutor] = useSelector((state: any) => [state.messages, state.currentInterlocutor]);
+  const [messages, currentInterlocutor] = useSelector((state: any) => [
+    state.messages.messages,
+    state.interlocutors.currentInterlocutor,
+  ]);
 
   const filteredMessages = messages.filter(
     (message: any) =>

@@ -6,9 +6,9 @@ import { UserType } from '../../../../types';
 
 const InputMessage: React.FC = () => {
   const [socketClient, currentInterlocutor, bots] = useSelector((state: any) => [
-    state.socketClient,
-    state.currentInterlocutor,
-    state.bots,
+    state.socket.socketClient,
+    state.interlocutors.currentInterlocutor,
+    state.interlocutors.bots,
   ]);
   const [content, setContent] = useState<string>('');
 

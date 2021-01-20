@@ -8,7 +8,7 @@ import { setCurrentInterlocutor } from '../../../../redux/actions';
 
 const User: React.FC<UserType> = (user) => {
   const dispatch = useDispatch();
-  const currentInterlocutor = useSelector((state: any) => state.currentInterlocutor);
+  const currentInterlocutor = useSelector((state: any) => state.interlocutors.currentInterlocutor);
   const { avatar, username, status, isOnline = true } = user;
 
   const classNames =

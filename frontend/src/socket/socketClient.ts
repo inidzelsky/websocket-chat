@@ -3,12 +3,22 @@ import { Dispatch } from 'redux';
 import { addMessage, loadBots, loadInterlocutors, loadMessages } from '../redux/actions';
 
 import { MessageType, UserType } from '../types';
+import {
+  AddMessageActionType,
+  LoadBotsActionType,
+  LoadInterlocutorsActionType,
+  LoadMessagesActionType,
+} from '../redux/actionsTypes';
+
+type DispatchType = Dispatch<
+  LoadInterlocutorsActionType | LoadBotsActionType | LoadMessagesActionType | AddMessageActionType
+>;
 
 class SocketClient {
   private socket: SocketIOClient.Socket | undefined;
-  private readonly dispatch: Dispatch;
+  private readonly dispatch: DispatchType;
 
-  constructor(dispatch: Dispatch) {
+  constructor(dispatch: DispatchType) {
     this.dispatch = dispatch;
   }
 

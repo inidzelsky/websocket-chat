@@ -11,10 +11,10 @@ import './UserList.css';
 
 const UserList: React.FC = () => {
   const [showOnlineUsers, interlocutors, bots, searchInterlocutors] = useSelector((state: any) => [
-    state.showOnlineUsers,
-    state.interlocutors,
-    state.bots,
-    state.searchInterlocutors,
+    state.interlocutors.showOnlineUsers,
+    state.interlocutors.interlocutors,
+    state.interlocutors.bots,
+    state.interlocutors.searchInterlocutors,
   ]);
 
   let statusInterlocutors = showOnlineUsers ? interlocutors.filter((i: UserType) => i.isOnline) : interlocutors;
