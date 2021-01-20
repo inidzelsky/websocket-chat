@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
+import config from '../config';
 import { Dispatch } from 'redux';
 import { addMessage, loadBots, loadInterlocutors, loadMessages } from '../redux/actions';
 
@@ -23,7 +24,7 @@ class SocketClient {
   }
 
   connect() {
-    this.socket = io('ws://localhost:8080/', {
+    this.socket = io(config.serverHost, {
       query: {
         username: localStorage.getItem('username'),
       },
