@@ -2,7 +2,6 @@ import io from 'socket.io-client';
 import config from '../config';
 import { Dispatch } from 'redux';
 import { addMessage, loadBots, loadInterlocutors, loadMessages } from '../redux/actions';
-
 import { MessageType, UserType } from '../types';
 import {
   AddMessageActionType,

@@ -31,6 +31,7 @@ class App {
       host: process.env.DB_HOST,
       database: process.env.DB_NAME,
       port: Number.parseInt(process.env.DB_PORT as string),
+      password: process.env.DB_PASSWORD
     });
 
     const postgresDatabase = new PostgresDatabase(pool);

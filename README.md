@@ -1,11 +1,17 @@
 # websocket-chat #
+## Technologies ##
+* React + Redux
+* Koa
+* Socket.io
+* Postgres
+
 ## Installation ##
 
 ### Frontend
 * Move to `frontend` folder
 * Run `npm install` script
 * Configure the server host in the `src/config.ts`
-* Run `npm build` script
+* Run `npm run build` script
 
 ### Backend
 * Move to `backend folder`

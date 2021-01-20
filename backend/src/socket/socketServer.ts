@@ -26,22 +26,26 @@ class SocketServer {
 
   configure() {
     this.io.on('connection', async (socket: Socket) => {
-      const username = await onConnection(this.io, socket, this.api, this.onlineUsers);
+      try {
+        const username = await onConnection(this.io, socket, this.api, this.onlineUsers);
 
-      // Message handler
-      socket.on('message', onMessage(this.io, socket, this.api, this.onlineUsers));
+        // Message handler
+        socket.on('message', onMessage(this.io, socket, this.api, this.onlineUsers));
 
-      // Bots handler
-      socket.on('bot', onBots(socket, this.api));
+        // Bots handler
+        socket.on('bot', onBots(socket, this.api));
 
-      // Spam bot
-      spamBot(socket, this.api, this.onlineUsers, username);
+        // Spam bot
+        spamBot(socket, this.api, this.onlineUsers, username);
 
-      // Disconnect handler
-      socket.on(
-        'disconnect',
-        onDisconnect(this.io, this.api, this.onlineUsers, username),
-      );
+        // Disconnect handler
+        socket.on(
+          'disconnect',
+          onDisconnect(this.io, this.api, this.onlineUsers, username),
+        );
+      } catch(e) {
+        console.log(e.message);
+      }
     });
   }
 }
