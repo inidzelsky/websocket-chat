@@ -17,7 +17,7 @@ const InputMessage: React.FC = () => {
   };
 
   const onClick = () => {
-    if (!content) return;
+    if (!content.trim()) return;
 
     const sender = localStorage.getItem('username');
     const receiver = currentInterlocutor.username;
