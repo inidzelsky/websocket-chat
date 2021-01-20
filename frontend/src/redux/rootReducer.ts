@@ -5,6 +5,7 @@ import {
   SET_CURRENT_INTERLOCUTOR,
   LOAD_MESSAGES,
   SET_SEARCH_INTERLOCUTORS,
+  LOAD_BOTS
 } from './types';
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   currentInterlocutor: null,
   searchInterlocutors: '',
   messages: [],
+  bots: []
 };
 
 const rootReducer = (state = initialState, action: any) => {
@@ -22,6 +24,8 @@ const rootReducer = (state = initialState, action: any) => {
       return { ...state, socketClient: action.payload };
     case LOAD_INTERLOCUTORS:
       return { ...state, interlocutors: action.payload };
+    case LOAD_BOTS:
+      return { ...state, bots: action.payload };
     case SHOW_ONLINE_USERS:
       return { ...state, showOnlineUsers: action.payload };
     case SET_CURRENT_INTERLOCUTOR:

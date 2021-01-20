@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import './InputMessage.css';
+import { UserType } from '../../../../types';
 
 const InputMessage: React.FC = () => {
-  const [socketClient, currentInterlocutor] = useSelector((state: any) => [
+  const [socketClient, currentInterlocutor, bots] = useSelector((state: any) => [
     state.socketClient,
     state.currentInterlocutor,
+    state.bots,
   ]);
   const [content, setContent] = useState<string>('');
 
@@ -19,7 +21,9 @@ const InputMessage: React.FC = () => {
 
     const sender = localStorage.getItem('username');
     const receiver = currentInterlocutor.username;
-    socketClient.sendMessage({ sender, receiver, content });
+    const toBot = bots.find((bot: UserType) => bot.username === receiver) ? true : false;
+
+    socketClient.sendMessage({ sender, receiver, content }, toBot);
 
     setContent('');
   };
@@ -30,7 +34,7 @@ const InputMessage: React.FC = () => {
 
   return (
     <div className='input-message'>
-      <input type='text' placeholder='Start chatting!' value={content} onChange={onChange} onKeyPress={onKeyPress}/>
+      <input type='text' placeholder='Start chatting!' value={content} onChange={onChange} onKeyPress={onKeyPress} />
       <button onClick={onClick}>Send message</button>
     </div>
   );

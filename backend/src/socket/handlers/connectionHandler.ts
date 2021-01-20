@@ -80,6 +80,11 @@ const onConnection = async (
   // Send all interlocutors to user
   socket.emit('set interlocutors', userInterlocutors);
 
+  // Send all available bots
+  let bots = await api.database.selectBots();
+  bots = bots.map((bot) => ({ ...bot, isOnline: true }));
+  socket.emit('set bots', bots);
+
   // Update interlocutors list of other users
   broadcastInterlocutors(io, users, onlineUsers);
 

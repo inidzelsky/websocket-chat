@@ -1,6 +1,7 @@
 // SOCKET
 export const SET_SOCKET = 'SET_SOCKET';
 export const LOAD_INTERLOCUTORS = 'SET_INTERLOCUTORS';
+export const LOAD_BOTS = 'LOAD_BOTS';
 
 // APP
 export const SHOW_ONLINE_USERS = 'SHOW_ONLINE_USERS';

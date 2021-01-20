@@ -6,6 +6,9 @@ interface Database {
   selectUserByUsername(username: string): Promise<UserType | null>;
   createUser(user: UserType): Promise<void>;
 
+  // Bots
+  selectBots(): Promise<Array<UserType>>;
+
   // Message queries
   selectMessagesByUsername(username: string): Promise<Array<MessageType>>;
   createMessage(message: MessageType): Promise<void>;

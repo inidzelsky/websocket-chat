@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import { Dispatch } from 'redux';
-import { loadInterlocutors, loadMessages } from '../redux/actions';
+import { loadBots, loadInterlocutors, loadMessages } from '../redux/actions';
 
 import { MessageType, UserType } from '../types';
 
@@ -25,13 +25,18 @@ class SocketClient {
       this.dispatch(loadInterlocutors(interlocutors));
     });
 
+    this.socket.on('set bots', (bots: Array<UserType>) => {
+      this.dispatch(loadBots(bots));
+    });
+
     this.socket.on('messages', (messages: Array<MessageType>) => {
       this.dispatch(loadMessages(messages));
     });
   }
 
-  sendMessage(message: Omit<MessageType, 'sendTime'>) {
-    (this.socket as SocketIOClient.Socket).emit('message', message);
+  sendMessage(message: Omit<MessageType, 'sendTime'>, toBot: boolean) {
+    if (toBot) (this.socket as SocketIOClient.Socket).emit('bot', message);
+    else (this.socket as SocketIOClient.Socket).emit('message', message);
   }
 }
 

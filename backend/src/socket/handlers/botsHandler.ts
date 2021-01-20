@@ -105,12 +105,16 @@ const onBots = (socket: Socket, api: API) => async (
   message: Omit<MessageType, 'sendTime'>,
 ) => {
   switch (message.receiver) {
-    case 'echoBot':
-      await echoBot(socket, api, message);
-    case 'reverseBot':
-      await reverseBot(socket, api, message);
-    case 'ignoreBot' || 'spamBot':
-      await ignoreBot(socket, api, message);
+    case 'Echo bot':
+      return await echoBot(socket, api, message);
+    case 'Reverse bot':
+      return await reverseBot(socket, api, message);
+    case 'Ignore bot':
+      return await ignoreBot(socket, api, message);
+    case 'Spam bot':
+      return await ignoreBot(socket, api, message);
+    default:
+      return;
   }
 };
 

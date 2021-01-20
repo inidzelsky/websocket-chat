@@ -10,14 +10,17 @@ import Search from './Search/Search';
 import './UserList.css';
 
 const UserList: React.FC = () => {
-  const [showOnlineUsers, interlocutors, searchInterlocutors] = useSelector((state: any) => [
+  const [showOnlineUsers, interlocutors, bots, searchInterlocutors] = useSelector((state: any) => [
     state.showOnlineUsers,
     state.interlocutors,
+    state.bots,
     state.searchInterlocutors,
   ]);
 
-  const statusInterlocutors = showOnlineUsers ? interlocutors.filter((i: UserType) => i.isOnline) : interlocutors;
-  const filteredInterlocutors = searchInterlocutors
+  let statusInterlocutors = showOnlineUsers ? interlocutors.filter((i: UserType) => i.isOnline) : interlocutors;
+  statusInterlocutors = [...bots, ...statusInterlocutors];
+
+  const filteredInterlocutors = [searchInterlocutors]
     ? statusInterlocutors.filter((i: UserType) => i.username.toLowerCase().includes(searchInterlocutors.toLowerCase()))
     : statusInterlocutors;
 

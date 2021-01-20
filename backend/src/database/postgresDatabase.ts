@@ -28,6 +28,12 @@ class PostgresDatabase implements Database {
     await this.pool.query(sql, [username, avatar, status]);
   }
 
+  async selectBots(): Promise<Array<UserType>> {
+    const sql = `select name as "username", avatar, status from bots`;
+    const { rows } = await this.pool.query(sql);
+    return rows;
+  }
+
   async selectMessagesByUsername(username: string): Promise<Array<MessageType>> {
     const sql = `select sender, receiver, content, send_time as "sendTime"
       from messages where sender = $1 or receiver = $1`;

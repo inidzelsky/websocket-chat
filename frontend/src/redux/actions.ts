@@ -6,7 +6,8 @@ import {
   SHOW_ONLINE_USERS,
   SET_CURRENT_INTERLOCUTOR,
   LOAD_MESSAGES,
-  SET_SEARCH_INTERLOCUTORS
+  SET_SEARCH_INTERLOCUTORS,
+  LOAD_BOTS,
 } from './types';
 import { MessageType, UserType } from '../types';
 
@@ -17,6 +18,10 @@ export const setSocket = (socket: SocketClient) => {
 
 export const loadInterlocutors = (interlocutors: Array<UserType>) => {
   return { type: LOAD_INTERLOCUTORS, payload: interlocutors };
+};
+
+export const loadBots = (bots: Array<UserType>) => {
+  return { type: LOAD_BOTS, payload: bots };
 };
 
 // APP
